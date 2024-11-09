@@ -12,6 +12,12 @@ const config = {
   SUBDOMAIN_TO_UPDATE: process.env.SUBDOMAIN_TO_UPDATE,
 };
 
+const optionalConfig = {
+  MINECRAFT_CLOUDFLARE_SERVER_PORT:
+    process.env.MINECRAFT_CLOUDFLARE_SERVER_PORT,
+};
+
+// * Checks if all the required env variables are present
 const missingConfig = Object.entries(config).filter(
   ([_, value]) => value === undefined
 );
@@ -23,4 +29,4 @@ if (missingConfig.length) {
   process.exit(1);
 }
 
-export default config;
+export default { ...config, ...optionalConfig };
