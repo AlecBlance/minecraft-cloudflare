@@ -14,12 +14,6 @@ importers:
       cloudflare:
         specifier: ^3.5.0
         version: 3.5.0
-      dotenv:
-        specifier: ^16.4.5
-        version: 16.4.5
-      tsconfig-paths:
-        specifier: ^4.2.0
-        version: 4.2.0
     devDependencies:
       '@changesets/cli':
         specifier: ^2.27.9
@@ -27,6 +21,9 @@ importers:
       '@types/node':
         specifier: ^22.9.0
         version: 22.9.0
+      dotenv:
+        specifier: ^16.4.5
+        version: 16.4.5
       nodemon:
         specifier: ^3.1.7
         version: 3.1.7
@@ -36,6 +33,9 @@ importers:
       tsc-alias:
         specifier: ^1.8.10
         version: 1.8.10
+      tsconfig-paths:
+        specifier: ^4.2.0
+        version: 4.2.0
       typescript:
         specifier: ^5.6.3
         version: 5.6.3
