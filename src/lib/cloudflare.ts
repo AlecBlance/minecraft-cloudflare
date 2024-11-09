@@ -1,6 +1,12 @@
 import config from "@/utils/config";
 import logger from "@/utils/log";
 import Cloudflare from "cloudflare";
+import { APIPromise } from "cloudflare/core";
+
+interface DnsManagementResult
+  extends APIPromise<Cloudflare.DNS.Records.Record> {
+  zone_name: string; // Force the presence of zone_name
+}
 
 const {
   CLOUDFLARE_API_KEY,
@@ -40,22 +46,24 @@ const updateDns = async (ngrokUrl: string) => {
     });
 
     const hasPreviousRecord = !!searchResult.result.length;
-    let name;
+    let dnsManagementResult;
 
     if (hasPreviousRecord) {
       logger("Updating existing DNS record");
       const recordId = searchResult.result[0].id!;
-      const updateResult = cloudflare.dns.records.edit(
+      dnsManagementResult = cloudflare.dns.records.edit(
         recordId,
         cloudflareRecord
       );
-      name = (await updateResult).name;
     } else {
       logger("Creating new DNS record");
-      const createResult = cloudflare.dns.records.create(cloudflareRecord);
-      name = (await createResult).name;
+      dnsManagementResult = cloudflare.dns.records.create(cloudflareRecord);
     }
-    logger(`Updated DNS record: ${name}`);
+    const { zone_name } =
+      (await dnsManagementResult) as unknown as DnsManagementResult;
+    logger(
+      `Updated DNS record: ${`${SUBDOMAIN_TO_UPDATE}.` || ""}${zone_name}`
+    );
   } catch (error) {
     if (error instanceof Error) {
       logger(`Error: ${error.message}`);
