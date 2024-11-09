@@ -14,6 +14,9 @@ importers:
       cloudflare:
         specifier: ^3.5.0
         version: 3.5.0
+      dotenv:
+        specifier: ^16.4.5
+        version: 16.4.5
     devDependencies:
       '@changesets/cli':
         specifier: ^2.27.9
@@ -21,9 +24,6 @@ importers:
       '@types/node':
         specifier: ^22.9.0
         version: 22.9.0
-      dotenv:
-        specifier: ^16.4.5
-        version: 16.4.5
       nodemon:
         specifier: ^3.1.7
         version: 3.1.7
