@@ -14,4 +14,4 @@ const server = http
   .listen(MINECRAFT_CLOUDFLARE_SERVER_PORT || undefined);
 const port = (server.address() as AddressInfo).port;
 
-logger(`Node.js web server at ${port} is running...`);
+logger(`Minecraft-cloudflare web server running at port ${port}...`);

@@ -62,7 +62,9 @@ const updateDns = async (ngrokUrl: string) => {
     const { zone_name } =
       (await dnsManagementResult) as unknown as DnsManagementResult;
     logger(
-      `Updated DNS record: ${`${SUBDOMAIN_TO_UPDATE}.` || ""}${zone_name}`
+      `Updated DNS record - You can now connect to ${
+        `${SUBDOMAIN_TO_UPDATE}.` || ""
+      }${zone_name} 🥳`
     );
   } catch (error) {
     if (error instanceof Error) {
