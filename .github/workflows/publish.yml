@@ -36,12 +36,12 @@ jobs:
         if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
           version=${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}
-          docker build . --file Dockerfile --tag minecraft-cloudflare:${version}
+          docker build . --file Dockerfile --tag alecblance/minecraft-cloudflare:${version}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Push Docker Image
         if: steps.build_image.conclusion == 'success'
         run: |
           version=${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}
-          docker login -u alecblance -p ${{secrets.DOCKER_TOKEN}}
+          echo "${{secrets.DOCKER_TOKEN}}" | docker login -u alecblance --password-stdin
           docker push alecblance/minecraft-cloudflare:${version}
