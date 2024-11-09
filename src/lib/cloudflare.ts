@@ -21,7 +21,7 @@ const updateDns = async (ngrokUrl: string) => {
   try {
     const [target, port] = ngrokUrl.replace("tcp://", "").split(":");
     const cloudflareRecord = {
-      name: SUBDOMAIN_TO_UPDATE!,
+      name: `_minecraft._tcp${`.${SUBDOMAIN_TO_UPDATE}` || ""}`,
       type: "SRV",
       data: {
         port,

@@ -9,12 +9,12 @@ const config = {
   CLOUDFLARE_API_KEY: process.env.CLOUDFLARE_API_KEY,
   CLOUDFLARE_ZONE_ID: process.env.CLOUDFLARE_ZONE_ID,
   CLOUDFLARE_EMAIL: process.env.CLOUDFLARE_EMAIL,
-  SUBDOMAIN_TO_UPDATE: process.env.SUBDOMAIN_TO_UPDATE,
 };
 
 const optionalConfig = {
   MINECRAFT_CLOUDFLARE_SERVER_PORT:
     process.env.MINECRAFT_CLOUDFLARE_SERVER_PORT,
+  SUBDOMAIN_TO_UPDATE: process.env.SUBDOMAIN_TO_UPDATE,
 };
 
 // * Checks if all the required env variables are present

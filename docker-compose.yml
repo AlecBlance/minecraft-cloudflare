@@ -1,9 +1,9 @@
 services:
   minecraft-cloudflare:
+    image: alecblance/minecraft-cloudflare:1.1.1
     container_name: minecraft-cloudflare
-    build: .
     ports:
-      - "5000:5000"
+      - 5000:5000
     environment:
       - NGROK_AUTH_TOKEN=${NGROK_AUTH_TOKEN}
       - MINECRAFT_SERVER_PORT=${MINECRAFT_SERVER_PORT}
