@@ -33,18 +33,18 @@ const updateDns = async (ngrokUrl: string) => {
       comment: "minecraft-cloudflare",
     } as unknown as Cloudflare.DNS.Records.RecordCreateParams;
 
-    const result = await cloudflare.dns.records.list({
+    const searchResult = await cloudflare.dns.records.list({
       zone_id: CLOUDFLARE_ZONE_ID!,
       type: "SRV",
       comment: { exact: "minecraft-cloudflare" },
     });
 
-    const hasPreviousRecord = !!result.result.length;
+    const hasPreviousRecord = !!searchResult.result.length;
     let name;
 
     if (hasPreviousRecord) {
       logger("Updating existing DNS record");
-      const recordId = result.result[0].id!;
+      const recordId = searchResult.result[0].id!;
       const updateResult = cloudflare.dns.records.edit(
         recordId,
         cloudflareRecord
@@ -52,8 +52,8 @@ const updateDns = async (ngrokUrl: string) => {
       name = (await updateResult).name;
     } else {
       logger("Creating new DNS record");
-      const result = cloudflare.dns.records.create(cloudflareRecord);
-      name = (await result).name;
+      const createResult = cloudflare.dns.records.create(cloudflareRecord);
+      name = (await createResult).name;
     }
     logger(`Updated DNS record: ${name}`);
   } catch (error) {

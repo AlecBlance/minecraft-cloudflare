@@ -1,4 +1,7 @@
-// Reference: https://github.com/june07/ngrok-dns/blob/main/log.js
+/**
+ * * Reference: https://github.com/june07/ngrok-dns/blob/main/log.js
+ * * Logger function to log messages with a prefix
+ **/
 
 const yellow = "\x1b[33m",
   off = "\x1b[0m";
